@@ -18,7 +18,7 @@
     - $\nabla C = Backprop({C_{12}, C_{23}, C_{34}}, lc)$
     - $sm = sm + \nabla C_{sm} \cdot \alpha$
     - $pt = pt + \nabla C_{pt} \cdot \epsilon$
-7 Combine nodes within layers to create layer graphs (lg) and compute their stability (st).
+7. Combine nodes within layers to create layer graphs (lg) and compute their stability (st).
     - $lg = CombineNodes(l, sm, pt, cr, tm)$
 8. Moderators rate the combination quality (crat).
     - $st = Mean(GraphStabilityMetrics(lg))$
