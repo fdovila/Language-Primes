@@ -1,5 +1,11 @@
 # Bridging the Gap: A Self-Supervised Hybrid Model for Achieving Human-Level Language Understanding
 
+Fernando B. Avila-Rencoret, MD
+Hamlyn Centre for Medical Robotics
+Imperial College London, United Kingdom
+fba13ATic.ac.uk, favilarATgmail.com
+
+
 ## TL;DR:
 We create a program to understand language human-level by combining learning from lots of text and reasoning. The program learns from "moderators" helping make better connections between words and ideas.
 
