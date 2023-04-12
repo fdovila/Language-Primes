@@ -36,3 +36,38 @@ Here's a summary of the framework in markdown math notation:
 12. Compute validation results: $vr = {acc, st}$
 
 This notation represents the main steps of the framework, which iteratively refines the model's understanding of language using moderator feedback and optimizes its semantic memory and access probabilities for better connectivity and combination quality. The validation model is used to measure the model's progress empirically.
+
+This is implemented as wolfram language, not for execution, but for clearness:
+````
+ generateTexPLANtsC[l_, llm_, m_, lh_, cr_, tm_, α_, ε_, δ_] := Module[
+  {lt, lp, sm, pt, lg, lc, crat, ∇C, ∇SM, ∇PT, ∇CR, ∇TM, vr, vm},
+  lt = Table[Table[GenerateText[l[[i, llm[[i]]]]]], {i, lh}];
+  lp = AssociationMap[ExtractPrimes, Table[ProcessTextNLPK[#], {lt}]];
+  sm = Table[RandomWeights[llm[[i]]], {i, lh}];
+  pt = Table[EqualProbs[llm[[i]]], {i, lh}];
+  C12 = TensorProd[sm[[1]], pt[[1]], sm[[2]]];
+  C23 = TensorProd[sm[[2]], pt[[2]], sm[[3]]];
+  C34 = TensorProd[sm[[3]], pt[[3]], sm[[4]]];
+  lc = {m[[1]]〈φl[[1]]|φl[[2]]〉, m[[2]]〈φl[[2]]|φl[[3]]〉, m[[3]]〈φl[[3]]|φl[[4]]〉};
+  ∇C = Backprop[{C12, C23, C34}, lc];
+  sm += ∇C[[1]] α;
+  pt += ∇C[[2]] ε;
+  lg = Table[CombineNodes[l[[i]], sm[[i]], pt[[i]], cr, tm], {i, lh}];
+  st = Mean[GraphStabilityMetrics[lg]];
+  crat = {m[[1]] RateCombinations[l[[1]]], m[[2]] RateCombinations[l[[2]]], m[[3]] RateCombinations[l[[3]]], m[[4]] RateCombinations[l[[4]]]};
+  ∇SM = Backprop[sm, crat];
+  sm += ∇SM α;
+  ∇PT = Backprop[pt, crat];
+  pt += ∇PT ε;
+  ∇CR = Backprop[cr, crat];
+  cr += ∇CR δ[];
+  ∇TM = Backprop[tm, crat];
+  tm += ∇TM δ[];
+  vm[newP_, newR_] := Module[{vt, vs, acc},
+    vt = Table[GenerateText[llm], {i, 10}];
+    vs = Table[Summarize[vt[[i]], newP, newR], {i, 10}];
+    acc = Mean[Table[m[[i]] RateAccuracy[vs[[i]], vt[[i]]], {i, 10}]]
+  ];
+  vr = {acc, st};
+]
+````
