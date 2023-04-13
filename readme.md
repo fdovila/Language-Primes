@@ -5,6 +5,7 @@ Hamlyn Centre for Medical Robotics.
 Imperial College London, United Kingdom.
 fba13ATic.ac.uk, favilarATgmail.com.
 DOI: 10.6084/m9.figshare.22596856
+LinkedIn Post on my profile: https://www.linkedin.com/posts/favi1ar_bridging-the-gap-a-self-supervised-hybrid-activity-7052073916348981248-tpc8
 
 
 ## TL;DR:
