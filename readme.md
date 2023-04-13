@@ -4,6 +4,7 @@ Fernando B. Avila-Rencoret, MD
 Hamlyn Centre for Medical Robotics
 Imperial College London, United Kingdom
 fba13ATic.ac.uk, favilarATgmail.com
+DOI: 10.6084/m9.figshare.22596856
 
 
 ## TL;DR:
